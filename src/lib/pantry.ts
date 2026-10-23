@@ -89,7 +89,7 @@ export function shelfLifeDays(name: string, storage: Storage): number | null {
     Object.keys(SHELF_LIFE).find((k) => n.includes(k));
   if (!key) return null;
   const entry = SHELF_LIFE[key];
-  return entry[storage] ?? CATEGORY_DEFAULT[storage];
+  return entry?.[storage] ?? CATEGORY_DEFAULT[storage];
 }
 
 export function toDateInput(d: Date): string {
@@ -110,7 +110,7 @@ export function suggestExpiry(name: string, storage: Storage, from = new Date())
 /** Whole days until expiry (negative = past). Null if no date. */
 export function daysUntil(expires: string | null, now = new Date()): number | null {
   if (!expires) return null;
-  const [y, m, d] = expires.split("-").map(Number);
+  const [y = 0, m = 1, d = 1] = expires.split("-").map(Number);
   const exp = Date.UTC(y, m - 1, d);
   const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
   return Math.round((exp - today) / 86_400_000);
