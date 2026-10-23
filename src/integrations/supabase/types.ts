@@ -14,7 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      meal_plans: {
+        Row: {
+          created_at: string
+          id: string
+          plan: Json
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          plan?: Json
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          plan?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
+      pantry_items: {
+        Row: {
+          added_at: string
+          category: string
+          expires_at: string | null
+          id: string
+          name: string
+          quantity: number
+          source: string
+          status: string
+          storage: string
+          unit: string
+          user_id: string
+        }
+        Insert: {
+          added_at?: string
+          category: string
+          expires_at?: string | null
+          id?: string
+          name: string
+          quantity: number
+          source?: string
+          status?: string
+          storage: string
+          unit: string
+          user_id?: string
+        }
+        Update: {
+          added_at?: string
+          category?: string
+          expires_at?: string | null
+          id?: string
+          name?: string
+          quantity?: number
+          source?: string
+          status?: string
+          storage?: string
+          unit?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
